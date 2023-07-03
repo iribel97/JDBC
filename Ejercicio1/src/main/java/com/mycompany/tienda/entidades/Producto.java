@@ -37,6 +37,14 @@ public class Producto {
         this.fabricante = fabricante;
     }
 
+    public Producto(String nombre, double precio, Fabricante fabricante) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.fabricante = fabricante;
+    }
+    
+    
+
     public int getCodigo() {
         return codigo;
     }

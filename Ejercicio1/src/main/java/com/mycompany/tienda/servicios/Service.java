@@ -13,8 +13,9 @@ import java.util.Scanner;
 public class Service {
     
     Imprimir imp;
+    FabricanteService fabServ;
     
-    public void menu(){
+    public void menu() throws Exception{
         Scanner scaner = new Scanner(System.in);
         int opc;
         
@@ -46,6 +47,8 @@ public class Service {
             case 6:
                 break;
             case 7:
+                System.out.print("  INGRESE NOMBRE DEL FABRICANTE: ");
+                fabServ.crearFab(scaner.nextLine());
                 break;
             case 8:
                 break;
