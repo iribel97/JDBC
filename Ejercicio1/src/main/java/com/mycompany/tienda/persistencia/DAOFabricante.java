@@ -5,6 +5,8 @@
 package com.mycompany.tienda.persistencia;
 
 import com.mycompany.tienda.entidades.Fabricante;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -43,13 +45,98 @@ public final class DAOFabricante extends DAO {
     /*
         PARA MODIFICAR EN LA TABLA FABRICANTE
      */
-    public void updateFab(Fabricante fab) {
+    public void updateFab(Fabricante fab) throws Exception {
         try {
+
+            if (fab == null) {
+                throw new Exception("DEBE INDICAR UN FABRICANTE A MODIFICAR");
+            }
+
+            String sql = "UPDATE Fabricante SET nombre = '" + fab.getNombre() + "' WHERE codigo = " + fab.getCodigo() + ";";
+
+            insertarModificarEliminar(sql);
 
         } catch (Exception e) {
 
             throw e;
 
+        }
+    }
+
+    /*
+        PARA ELIMINAR EN LA TABLA FABRICANTE
+     */
+    public void deleteFab(String nombre) throws Exception {
+
+        try {
+
+            String sql = "DELETE FROM Fabricante WHERE nombre = '" + nombre + "';";
+
+            insertarModificarEliminar(sql);
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+
+    }
+
+    /*
+        PARA DEVOLVER TODOS LOS REGISTROS DE LA TABLA FABRICANTE
+     */
+    public Collection<Fabricante> listarFab() throws Exception {
+
+        try {
+
+            String sql = "SELECT * FROM Fabricante";
+
+            consultarBase(sql);
+
+            Fabricante fab = null;
+            Collection<Fabricante> listFab = new ArrayList();
+
+            while (resultado.next()) {
+                fab = new Fabricante();
+                fab.setCodigo(resultado.getInt(1));
+                fab.setNombre(resultado.getString(2));
+
+                listFab.add(fab);
+
+            }
+            desconectarBase();
+            return listFab;
+
+        } catch (Exception e) {
+            desconectarBase();
+            throw new Exception("ERROR DE SISTEMA");
+        }
+
+    }
+    
+    /*
+        PARA DEVOLVER SOLO UN REGISTRO DE LA TABLA FABRICANTE
+     */
+    public Fabricante buscarFab(String nombre) throws Exception{
+        try {
+            String sql = "SELECT * FROM Fabricante WHERE nombre = '" + nombre + "';";
+            consultarBase(sql);
+            
+            Fabricante fab = null;
+            
+            while (resultado.next()) {
+                fab = new Fabricante();
+                fab.setCodigo(resultado.getInt(1));
+                fab.setNombre(resultado.getString(2));
+            }
+            
+            desconectarBase();
+            return fab;
+            
+        } catch (Exception e) {
+            desconectarBase();
+            throw e;
+            
         }
     }
 }
