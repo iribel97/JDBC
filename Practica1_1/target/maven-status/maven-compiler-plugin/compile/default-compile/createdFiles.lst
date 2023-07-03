@@ -1,0 +1,8 @@
+com\mycompany\practica1_1\Dominio\Mascota\Mascota.class
+com\mycompany\practica1_1\Practica1_1.class
+com\mycompany\practica1_1\Dominio\Usuario\Usuario.class
+com\mycompany\practica1_1\Dominio\Mascota\MascotaService.class
+com\mycompany\practica1_1\Dominio\Usuario\UsuarioService.class
+com\mycompany\practica1_1\Persistencia\MascotaDAO.class
+com\mycompany\practica1_1\Persistencia\UsuarioDAO.class
+com\mycompany\practica1_1\Persistencia\DAO.class
