@@ -22,6 +22,18 @@ public class Imprimir {
         System.out.println("| 6.- INGRESAR PRODUCTO                               |");
         System.out.println("| 7.- INGRESAR FABRICANTE                             |");
         System.out.println("| 8.- EDITAR PRODUCTO                                 |");
+        System.out.println("| 9.- SALIR                                           |");
+        System.out.println("|-----------------------------------------------------|");
+        System.out.print("    SELECCIONE UNA OPCION: ");
+    }
+    
+    public void menuModifProduct(){
+        System.out.println("|-----------------------------------------------------|");
+        System.out.println("|        OPCIONES DE CAMPOS QUE PUEDE MODIFICAR       |");
+        System.out.println("|-----------------------------------------------------|");
+        System.out.println("|   1. NOMBRE DEL PRODUCTO                            |");
+        System.out.println("|   2. PRECIO DEL PRODUCTO                            |");
+        System.out.println("|   3. CODIGO FABRICANTE DEL PRODUCTO                 |");
         System.out.println("|-----------------------------------------------------|");
         System.out.print("    SELECCIONE UNA OPCION: ");
     }

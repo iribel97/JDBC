@@ -74,6 +74,35 @@ public final class DAOProducto extends DAO {
 
         }
     }
+    
+    /*
+        EDITAR PRODUCTO
+    */
+    
+    public void updateProduct(Producto product, int opc) throws Exception{
+        try {
+            String sql;
+            switch (opc) {
+                case 1:
+                    sql = "UPDATE Producto SET nombre = '" + product.getNombre() + "' WHERE codigo = " + product.getCodigo() + ";";
+                    break;
+                case 2:
+                    sql = "UPDATE Producto SET precio = " + product.getPrecio() + " WHERE codigo = " + product.getCodigo() + ";";
+                    break;
+                case 3:
+                    sql = "UPDATE Producto SET coigo_fabricante = " + product.getFabricante().getCodigo() + " WHERE codigo = " + product.getCodigo() + ";";
+                    break;
+                default:
+                    throw new AssertionError();
+            }
+            
+            insertarModificarEliminar(sql);
+            
+            
+        } catch (Exception e) {
+            throw e;
+        }
+    }
 
     /*
         PARA BUSCAR EN LA TABLA FABRICANTE
@@ -143,6 +172,124 @@ public final class DAOProducto extends DAO {
 
         }
 
+    }
+    
+    public Collection<Producto> productoByPrice() throws Exception{
+        try {
+            String sql = "SELECT * FROM Producto WHERE precio BETWEEN 120 AND 202; ";
+
+            consultarBase(sql);
+
+            Producto product = null;
+            Collection<Producto> products = new ArrayList();
+
+            while (resultado.next()) {
+
+                product = new Producto();
+                product.setCodigo(resultado.getInt(1));
+                product.setNombre(resultado.getString(2));
+                product.setPrecio(resultado.getDouble(3));
+                Integer idFab = resultado.getInt(4);
+                Fabricante fab = fabServ.selectFab(idFab);
+                product.setFabricante(fab);
+
+                products.add(product);
+                
+            }
+            desconectarBase();
+            return products;
+            
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public Collection<Producto> productoByPortatil() throws Exception{
+        try {
+            String sql = "SELECT * FROM Producto WHERE nombre like 'Port%'; ";
+
+            consultarBase(sql);
+
+            Producto product = null;
+            Collection<Producto> products = new ArrayList();
+
+            while (resultado.next()) {
+
+                product = new Producto();
+                product.setCodigo(resultado.getInt(1));
+                product.setNombre(resultado.getString(2));
+                product.setPrecio(resultado.getDouble(3));
+                Integer idFab = resultado.getInt(4);
+                Fabricante fab = fabServ.selectFab(idFab);
+                product.setFabricante(fab);
+
+                products.add(product);
+                
+            }
+            desconectarBase();
+            return products;
+            
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public Producto productBarato() throws Exception{
+        try {
+            String sql = "SELECT * FROM Producto ORDER BY precio ASC LIMIT 1";
+
+            consultarBase(sql);
+
+            Producto product = null;
+            
+
+            while (resultado.next()) {
+
+                product = new Producto();
+                product.setCodigo(resultado.getInt(1));
+                product.setNombre(resultado.getString(2));
+                product.setPrecio(resultado.getDouble(3));
+                Integer idFab = resultado.getInt(4);
+                Fabricante fab = fabServ.selectFab(idFab);
+                product.setFabricante(fab);
+
+                
+                
+            }
+            desconectarBase();
+            return product;
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
+    public Producto selectProductId(int id) throws Exception{
+        try {
+            String sql = "SELECT * FROM Producto where codigo = " + id;
+
+            consultarBase(sql);
+
+            Producto product = null;
+            
+
+            while (resultado.next()) {
+
+                product = new Producto();
+                product.setCodigo(resultado.getInt(1));
+                product.setNombre(resultado.getString(2));
+                product.setPrecio(resultado.getDouble(3));
+                Integer idFab = resultado.getInt(4);
+                Fabricante fab = fabServ.selectFab(idFab);
+                product.setFabricante(fab);
+
+                
+                
+            }
+            desconectarBase();
+            return product;
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
 }

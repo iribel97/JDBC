@@ -6,15 +6,17 @@ package Service;
 
 import Entidades.Fabricante;
 import Persistencia.DAOFabricante;
+import java.util.Collection;
 
 /**
  *
  * @author irina
  */
-public class FabricanteService {
+public class FabricanteService extends Imprimir{
     private DAOFabricante dao;
 
     public FabricanteService() {
+        this.dao = new DAOFabricante();
     }
     
 
@@ -71,5 +73,27 @@ public class FabricanteService {
             throw e;
         }
         
+    }
+    
+    public void mostrarFabricante() throws Exception{
+        try {
+            String vNombre = "_______________________ NOMBRE _____________________",
+                    vCodigo = "_____ CODIGO _____";
+            Collection<Fabricante> fabricantes = dao.listarFab();
+            System.out.println("|-----------------------------------------------------------------------|");
+            System.out.println("|                         LISTADO DE FABRICANTES                        |");
+            System.out.println("|-----------------------------------------------------------------------|");
+            System.out.println("|" + vCodigo + "|" + vNombre + "|");
+            for(Fabricante aux : fabricantes){
+                imprimirCasilla(String.valueOf(aux.getCodigo()), vCodigo);
+                imprimirCasilla(aux.getNombre(), vNombre);
+                System.out.println("|");
+            }
+            System.out.println("|-----------------------------------------------------------------------|");
+        } catch (Exception e) {
+            
+            throw e;
+            
+        }
     }
 }

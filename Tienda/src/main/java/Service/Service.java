@@ -15,7 +15,7 @@ public class Service extends Imprimir {
     FabricanteService fabServ = new FabricanteService();
     ProductoService proServ = new ProductoService();
 
-    public void menu() throws Exception {
+    public boolean menu() throws Exception {
         Scanner scaner = new Scanner(System.in);
         int opc;
 
@@ -28,45 +28,84 @@ public class Service extends Imprimir {
 
             } catch (Exception e) {
                 mensajeE1();
-                opc = 9;
+                opc = 10;
             }
 
-        } while (opc > 8);
+        } while (opc > 10);
 
         switch (opc) {
             case 1:
                 try {
-                    proServ.mostrarNombreProduct();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Error del sistema por \n" + e.getMessage());
-                }
+                proServ.mostrarNombreProduct();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
 
             break;
             case 2:
                 try {
-                    proServ.mostrarNombrePrecioProduct();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                    System.out.println("Error del sistema por \n" + e.getMessage());
-                }
-                break;
+                proServ.mostrarNombrePrecioProduct();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
+            break;
             case 3:
-                break;
+                try {
+                proServ.mostrarPrecioEntreProduct();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
+            break;
             case 4:
-                break;
+                try {
+                proServ.mostrarProductPortatil();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
+            break;
             case 5:
-                break;
+                try {
+                proServ.mostrarProductBarato();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
+            break;
             case 6:
-                break;
+                try {
+                proServ.ingresarProducto();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
+            break;
             case 7:
+                try {
+                scaner.nextLine();
                 System.out.print("  INGRESE NOMBRE DEL FABRICANTE: ");
                 fabServ.crearFab(scaner.nextLine());
-                break;
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
+
+            break;
             case 8:
+                try {
+               proServ.mostrarTodosLosProductos();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("Error del sistema por \n" + e.getMessage());
+            }
+                break;
+            case 9:
                 break;
         }
-
+        return opc == 9;
     }
 
 }

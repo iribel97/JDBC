@@ -5,6 +5,7 @@
 package com.mycompany.tienda;
 
 import Service.Service;
+import java.util.Scanner;
 
 /**
  *
@@ -14,9 +15,18 @@ public class Tienda {
 
     public static void main(String[] args) throws Exception {
         Service serv = new Service();
+        Scanner scan = new Scanner(System.in);
+        boolean opc;
         
         try {
-            serv.menu();
+            do {
+               opc = serv.menu();
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+                System.out.println("");
+            } while (!opc);
+            
         } catch (Exception e) {
             e.printStackTrace();
             System.out.println("Error del sistema por \n" + e.getMessage());
