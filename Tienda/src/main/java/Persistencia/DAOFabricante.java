@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tienda.persistencia;
+package Persistencia;
 
-import com.mycompany.tienda.entidades.Fabricante;
+
+import Entidades.Fabricante;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -98,8 +99,8 @@ public final class DAOFabricante extends DAO {
 
             while (resultado.next()) {
                 fab = new Fabricante();
-                fab.setCodigo(resultado.getInt(1));
-                fab.setNombre(resultado.getString(2));
+                fab.setCodigo(resultado.getInt("codigo"));
+                fab.setNombre(resultado.getString("nombre"));
 
                 listFab.add(fab);
 
@@ -120,6 +121,29 @@ public final class DAOFabricante extends DAO {
     public Fabricante buscarFab(String nombre) throws Exception{
         try {
             String sql = "SELECT * FROM Fabricante WHERE nombre = '" + nombre + "';";
+            consultarBase(sql);
+            
+            Fabricante fab = null;
+            
+            while (resultado.next()) {
+                fab = new Fabricante();
+                fab.setCodigo(resultado.getInt(1));
+                fab.setNombre(resultado.getString(2));
+            }
+            
+            desconectarBase();
+            return fab;
+            
+        } catch (Exception e) {
+            desconectarBase();
+            throw e;
+            
+        }
+    }
+    
+    public Fabricante buscarFabID(int id) throws Exception{
+        try {
+            String sql = "SELECT * FROM Fabricante WHERE codigo = " + id + ";";
             consultarBase(sql);
             
             Fabricante fab = null;

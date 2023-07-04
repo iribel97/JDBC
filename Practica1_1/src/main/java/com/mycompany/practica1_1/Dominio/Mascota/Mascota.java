@@ -56,4 +56,13 @@ public class Mascota {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
+    @Override
+    public String toString() {
+        return "Mascota{" + "id=" + id + ", raza=" + raza + ", apodo=" + apodo + ", usuario=" + usuario.getCorreoElectronico() + '}';
+    }
+
+    
+    
+    
 }

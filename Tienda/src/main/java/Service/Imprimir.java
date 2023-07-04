@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tienda.servicios;
+package Service;
 
 /**
  *
@@ -33,4 +33,32 @@ public class Imprimir {
         System.out.println("OPCION NO ES UN NUMERO, INTENTELO DE NUEVO");
     }
     
+    // CASILLAS TABLA --------------------------------------------------------------------
+    public void imprimirCasilla(String nombre, String variable) {
+        int tamanio;
+        String vAux;
+        System.out.print("|");
+
+        vAux = nombre;
+        tamanio = vAux.length();
+
+        if (tamanio % 2 == 0) {
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(vAux);
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+        } else {
+            tamanio--;
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(vAux);
+            for (int i = 0; i < (variable.length() - tamanio - 2) / 2; i++) {
+                System.out.print(" ");
+            }
+        }
+    }
 }

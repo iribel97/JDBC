@@ -2,18 +2,21 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tienda.servicios;
+package Service;
 
-import com.mycompany.tienda.entidades.Fabricante;
-import com.mycompany.tienda.persistencia.DAOFabricante;
+import Entidades.Fabricante;
+import Persistencia.DAOFabricante;
 
 /**
  *
  * @author irina
  */
 public class FabricanteService {
-    
     private DAOFabricante dao;
+
+    public FabricanteService() {
+    }
+    
 
     public FabricanteService(DAOFabricante dao) {
         this.dao = dao;
@@ -50,5 +53,23 @@ public class FabricanteService {
         }
     }
     
-    
+    //DEVOLVER UN USUARIO
+    public Fabricante selectFab(int id) throws Exception{
+        
+        try {
+            
+            if (id == 0) {
+                throw new Exception("DEBE DE INDICAR EL ID");
+            }
+            
+           Fabricante fab = dao.buscarFabID(id);
+           
+           return fab;
+            
+        } catch (Exception e) {
+            
+            throw e;
+        }
+        
+    }
 }

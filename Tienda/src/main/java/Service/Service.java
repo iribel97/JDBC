@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.tienda.servicios;
+package Service;
 
 import java.util.Scanner;
 
@@ -10,33 +10,46 @@ import java.util.Scanner;
  *
  * @author irina
  */
-public class Service {
-    
-    Imprimir imp;
-    FabricanteService fabServ;
-    
-    public void menu() throws Exception{
+public class Service extends Imprimir {
+
+    FabricanteService fabServ = new FabricanteService();
+    ProductoService proServ = new ProductoService();
+
+    public void menu() throws Exception {
         Scanner scaner = new Scanner(System.in);
         int opc;
-        
+
         do {
-            
+
             try {
-                
-                imp.menuGeneral();
+
+                menuGeneral();
                 opc = scaner.nextInt();
-                
+
             } catch (Exception e) {
-                imp.mensajeE1();
+                mensajeE1();
                 opc = 9;
             }
-            
+
         } while (opc > 8);
-        
+
         switch (opc) {
             case 1:
-                break;
+                try {
+                    proServ.mostrarNombreProduct();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Error del sistema por \n" + e.getMessage());
+                }
+
+            break;
             case 2:
+                try {
+                    proServ.mostrarNombrePrecioProduct();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    System.out.println("Error del sistema por \n" + e.getMessage());
+                }
                 break;
             case 3:
                 break;
@@ -53,9 +66,7 @@ public class Service {
             case 8:
                 break;
         }
-        
-        
+
     }
-    
-    
+
 }
