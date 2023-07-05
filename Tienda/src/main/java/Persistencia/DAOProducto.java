@@ -90,7 +90,7 @@ public final class DAOProducto extends DAO {
                     sql = "UPDATE Producto SET precio = " + product.getPrecio() + " WHERE codigo = " + product.getCodigo() + ";";
                     break;
                 case 3:
-                    sql = "UPDATE Producto SET coigo_fabricante = " + product.getFabricante().getCodigo() + " WHERE codigo = " + product.getCodigo() + ";";
+                    sql = "UPDATE Producto SET codigo_fabricante = " + product.getFabricante().getCodigo() + " WHERE codigo = " + product.getCodigo() + ";";
                     break;
                 default:
                     throw new AssertionError();
