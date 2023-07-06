@@ -189,7 +189,7 @@ public class ProductoService extends Imprimir {
                 System.out.println("|");
             }
             System.out.println("|-----------------------------------------------------------------------------------------------------|");
-            System.out.print("   INGRESE CODIGO DE PRODUCTO A MODIFICAR");
+            System.out.print("   INGRESE CODIGO DE PRODUCTO A MODIFICAR: ");
             Producto product = dao.selectProductId(scanP.nextInt());
             
             menuModifProduct();
@@ -211,12 +211,10 @@ public class ProductoService extends Imprimir {
                     break;
                 case 3:
                     fabServ.mostrarFabricante();
-                    System.out.println("   SELECCIONE EL ID DEL FABRICANTE: ");
+                    System.out.print("   SELECCIONE EL ID DEL FABRICANTE: ");
                     product.setFabricante(fabServ.selectFab(scanP.nextInt()));
                     dao.updateProduct(product, opc);
                     break;
-                default:
-                    throw new AssertionError();
             }
         } catch (Exception e) {
 

@@ -8,8 +8,10 @@ package Persistencia;
 import Entidades.Fabricante;
 import Entidades.Producto;
 import Service.FabricanteService;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.sql.SQLException;
 
 /**
  *
@@ -81,7 +83,7 @@ public final class DAOProducto extends DAO {
     
     public void updateProduct(Producto product, int opc) throws Exception{
         try {
-            String sql;
+            String sql = "";
             switch (opc) {
                 case 1:
                     sql = "UPDATE Producto SET nombre = '" + product.getNombre() + "' WHERE codigo = " + product.getCodigo() + ";";
@@ -92,8 +94,7 @@ public final class DAOProducto extends DAO {
                 case 3:
                     sql = "UPDATE Producto SET codigo_fabricante = " + product.getFabricante().getCodigo() + " WHERE codigo = " + product.getCodigo() + ";";
                     break;
-                default:
-                    throw new AssertionError();
+
             }
             
             insertarModificarEliminar(sql);
@@ -291,5 +292,8 @@ public final class DAOProducto extends DAO {
             throw e;
         }
     }
+    
+    
+    
 
 }
