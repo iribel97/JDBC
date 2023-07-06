@@ -8,6 +8,8 @@ import Entidades.Casa;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collection;
 
 /**
  *
@@ -66,7 +68,7 @@ public final class DAOCasa extends DAO {
             
             consultarBase(sql);
             
-            Casa house = null;
+            Casa house = new Casa();
             
             while(resultado.next()){
                 house.setIdCasa(resultado.getInt(1));
@@ -85,6 +87,50 @@ public final class DAOCasa extends DAO {
             
             desconectarBase();
             return house;
+            
+        } catch (Exception e) {
+            
+            throw e;
+            
+        }
+        
+    }
+    
+    /*DEVOLVER TODOS LOS REGISTROS DE LA TABLA CASA*/
+    public Collection<Casa> selectHouse(int id) throws Exception{
+        
+        try {
+            
+            if (id == 0) {
+                throw new Exception("");
+            }
+            
+            String sql = "SELECT * FROM Casa;";
+            
+            consultarBase(sql);
+            
+            Casa house = new Casa();
+            Collection<Casa> houses = new ArrayList();
+            
+            while(resultado.next()){
+                house.setIdCasa(resultado.getInt(1));
+                house.setCalle(resultado.getString(2));
+                house.setNumero(resultado.getInt(3));
+                house.setCodigoPostal(resultado.getString("codigo_postal"));
+                house.setCiudad(resultado.getString("ciudad"));
+                house.setPais(resultado.getString("pais"));
+                house.setFechaDesde(LocalDate.of(resultado.getDate("fecha_desde").getYear(), resultado.getDate("fecha_desde").getMonth(), resultado.getDate("fecha_desde").getDay()));
+                house.setFechaHasta(LocalDate.of(resultado.getDate("fecha_hasta").getYear(), resultado.getDate("fecha_hasta").getMonth(), resultado.getDate("fecha_hasta").getDay()));
+                house.setTiempoMin(resultado.getInt("tiempo_minimo"));
+                house.setTiempoMax(resultado.getInt("tiempo_maximo"));
+                house.setPrecioHabitacion(resultado.getDouble("precio_habitacion"));
+                house.setTipoVivienda(resultado.getString("tipo_vivienda"));
+                
+                houses.add(house);
+            }
+            
+            desconectarBase();
+            return houses;
             
         } catch (Exception e) {
             
