@@ -64,7 +64,7 @@ public final class DAOCasa extends DAO {
                 throw new Exception("");
             }
             
-            String sql = "SELECT * FROM Casa WHERE id_casa = " + id + ";";
+            String sql = "SELECT * FROM Casas WHERE id_casa = " + id + ";";
             
             consultarBase(sql);
             
@@ -105,7 +105,7 @@ public final class DAOCasa extends DAO {
                 throw new Exception("");
             }
             
-            String sql = "SELECT * FROM Casa;";
+            String sql = "SELECT * FROM Casas;";
             
             consultarBase(sql);
             

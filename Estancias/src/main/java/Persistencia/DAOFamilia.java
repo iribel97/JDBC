@@ -22,16 +22,17 @@ public class DAOFamilia extends DAO{
             
             consultarBase(sql);
             
-            Familia family = new Familia();
+            Familia family;
             Collection<Familia> familys = new ArrayList();
             
             while (resultado.next()) {
-                family.setIdFamilia(resultado.getInt(1));
-                family.setNombre(resultado.getString(2));
-                family.setEdadMin(resultado.getInt(3));
-                family.setEdadMax(resultado.getInt(4));
-                family.setNomHijos(resultado.getInt(5));
-                family.setEmail(resultado.getString(6));
+                family = new Familia();
+                family.setIdFamilia(resultado.getInt("id_familia"));
+                family.setNombre(resultado.getString("nombre"));
+                family.setEdadMin(resultado.getInt("edad_minima"));
+                family.setEdadMax(resultado.getInt("edad_maxima"));
+                family.setNomHijos(resultado.getInt("num_hijos"));
+                family.setEmail(resultado.getString("email"));
                 family.setCasaFamilia(daoC.selectHouseByID(resultado.getInt(7)));
                 familys.add(family);
                 

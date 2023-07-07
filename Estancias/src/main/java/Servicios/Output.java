@@ -26,6 +26,7 @@ public class Output {
         System.out.println("|  10.- INSERTAR DATOS EN LA TABLA ESTANCIAS                                  |");
         System.out.println("|  11.- SALIR                                                                 |");
         System.out.println("|-----------------------------------------------------------------------------|");
+        System.out.print("    SELECCIONE UNA OPCION: ");
     }
     
     // CASILLAS TABLA --------------------------------------------------------------------
