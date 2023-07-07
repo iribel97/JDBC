@@ -109,10 +109,11 @@ public final class DAOCasa extends DAO {
             
             consultarBase(sql);
             
-            Casa house = new Casa();
+            Casa house;
             Collection<Casa> houses = new ArrayList();
             
             while(resultado.next()){
+                house = new Casa();
                 house.setIdCasa(resultado.getInt(1));
                 house.setCalle(resultado.getString(2));
                 house.setNumero(resultado.getInt(3));
@@ -138,6 +139,44 @@ public final class DAOCasa extends DAO {
             
         }
         
+    }
+    
+    public ArrayList<Casa> selectHouseByDate() throws Exception{
+        try {
+            String sql = "SELECT * FROM casas "
+                    + "WHERE pais = 'Reino Unido' AND "
+                    + "DATE_FORMAT(fecha_desde, '%d/%m/%Y') <= '31/08/2020' AND "
+                    + "DATE_FORMAT(fecha_hasta, '%d/%m/%Y') >= '01/08/2020';";
+            
+            consultarBase(sql);
+            
+            Casa house;
+            ArrayList<Casa> houses = new ArrayList();
+            
+            while (resultado.next()) {
+                house = new Casa();
+                house.setIdCasa(resultado.getInt(1));
+                house.setCalle(resultado.getString(2));
+                house.setNumero(resultado.getInt(3));
+                house.setCodigoPostal(resultado.getString("codigo_postal"));
+                house.setCiudad(resultado.getString("ciudad"));
+                house.setPais(resultado.getString("pais"));
+                house.setFechaDesde(resultado.getDate("fecha_desde").toLocalDate());
+                house.setFechaHasta(resultado.getDate("fecha_hasta").toLocalDate());
+                house.setTiempoMin(resultado.getInt("tiempo_minimo"));
+                house.setTiempoMax(resultado.getInt("tiempo_maximo"));
+                house.setPrecioHabitacion(resultado.getDouble("precio_habitacion"));
+                house.setTipoVivienda(resultado.getString("tipo_vivienda"));
+                
+                houses.add(house);
+                
+            }
+            desconectarBase();
+            return houses;
+            
+        } catch (Exception e) {
+            throw new Exception("ERROR SELECCIONANDO CASAS DISPONIBLES ENTRE EL 01/08/2020 HASTA EL 31/08/2020");
+        }
     }
     
 }

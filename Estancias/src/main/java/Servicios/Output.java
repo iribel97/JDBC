@@ -43,7 +43,7 @@ public class Output {
                 System.out.print(" ");
             }
             System.out.print(vAux);
-            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+            for (int i = 0; i < (variable.length() - tamanio+1) / 2; i++) {
                 System.out.print(" ");
             }
         } else {
@@ -52,7 +52,7 @@ public class Output {
                 System.out.print(" ");
             }
             System.out.print(vAux);
-            for (int i = 0; i < (variable.length() - tamanio - 2) / 2; i++) {
+            for (int i = 0; i < (variable.length() - tamanio - 1) / 2; i++) {
                 System.out.print(" ");
             }
         }

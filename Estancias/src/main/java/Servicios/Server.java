@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class Server extends Output {
 
     ServerFamilia servFam = new ServerFamilia();
+    ServerCasa servCas = new ServerCasa();
     Scanner scan = new Scanner(System.in);
 
     public boolean menu() throws Exception {
@@ -32,11 +33,15 @@ public class Server extends Output {
                 try {
                 servFam.showFamiliesConditionKids();
             } catch (Exception e) {
-                throw e;
+                throw new Exception("ERROR OPCION 1");
             }
                 break;
             case 2:
-                
+                try {
+                servCas.showHousesByAugustMonth();
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 2");
+            }
                 break;
             case 3:
                 
