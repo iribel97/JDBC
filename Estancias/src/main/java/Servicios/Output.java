@@ -28,4 +28,33 @@ public class Output {
         System.out.println("|-----------------------------------------------------------------------------|");
     }
     
+    // CASILLAS TABLA --------------------------------------------------------------------
+    public void imprimirCasilla(String nombre, String variable) {
+        int tamanio;
+        String vAux;
+        System.out.print("|");
+
+        vAux = nombre;
+        tamanio = vAux.length();
+
+        if (tamanio % 2 == 0) {
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(vAux);
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+        } else {
+            tamanio--;
+            for (int i = 0; i < (variable.length() - tamanio) / 2; i++) {
+                System.out.print(" ");
+            }
+            System.out.print(vAux);
+            for (int i = 0; i < (variable.length() - tamanio - 2) / 2; i++) {
+                System.out.print(" ");
+            }
+        }
+    }
+    
 }
