@@ -45,4 +45,38 @@ public class DAOFamilia extends DAO{
         }
     }
     
+    //FAMILIAS CUYO MAIL SEA 'HOTMAIL'
+    public ArrayList<Familia> selectFamilyByHotmail() throws Exception{
+        DAOCasa daoC = new DAOCasa();
+        try {
+            String sql = "SELECT * FROM familias WHERE email LIKE '%@hotmail%';";
+            
+            consultarBase(sql);
+            
+            Familia family;
+            ArrayList<Familia> families = new ArrayList();
+            
+            while (resultado.next()) {
+                family = new Familia();
+                family.setIdFamilia(resultado.getInt("id_familia"));
+                family.setNombre(resultado.getString("nombre"));
+                family.setEdadMin(resultado.getInt("edad_minima"));
+                family.setEdadMax(resultado.getInt("edad_maxima"));
+                family.setNomHijos(resultado.getInt("num_hijos"));
+                family.setEmail(resultado.getString("email"));
+                family.setCasaFamilia(daoC.selectHouseByID(resultado.getInt(7)));
+                families.add(family);
+                
+            }
+            desconectarBase();
+            return families;
+            
+            
+        } catch (Exception e) {
+            throw new Exception("ERROR EN EL DAO FAMILIA SELECCIONANDO FAMILIAS CUYO MAIL SEA 'HOTMAIL'");
+        }
+    }
+    
+    
+    
 }

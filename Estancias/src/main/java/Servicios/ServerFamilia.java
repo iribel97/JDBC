@@ -39,4 +39,29 @@ public class ServerFamilia extends Output{
         }
         
     }
+    
+    public void showFamiliesByEmail() throws Exception{
+        try {
+            String vFam = "___________ FAMILIA __________",vEdadMin = "__ EDAD MIN __",
+                    vNum = "__ # HIJOS _",vEmail = "______________ EMAIL ______________";
+            Collection<Familia> families = dao.selectFamilyByHotmail();
+            
+            System.out.println("|----------------------------------------------------------------------------------------------|");
+            System.out.println("|                               FAMILIAS CUYO MAIL SEA 'HOTMAIL'                               |");
+            System.out.println("|----------------------------------------------------------------------------------------------|");
+            System.out.println("|"+vFam+"|"+vEdadMin+"|"+vNum+"|"+vEmail+"|");
+            
+            for(Familia fam : families){
+                imprimirCasilla(fam.getNombre(), vFam);
+                imprimirCasilla(String.valueOf(fam.getEdadMin()), vEdadMin);
+                imprimirCasilla(String.valueOf(fam.getNomHijos()), vNum);
+                imprimirCasilla(fam.getEmail(), vEmail);
+                System.out.println("|");
+            }
+            System.out.println("|----------------------------------------------------------------------------------------------|");
+        } catch (Exception e) {
+            throw e;
+        }
+    }
+    
 }

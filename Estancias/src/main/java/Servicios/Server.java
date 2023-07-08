@@ -25,9 +25,9 @@ public class Server extends Output {
             } catch (Exception e) {
                 opc = 12;
                 throw new Exception("ERROR EN MENU PRINCIPAL");
-                
+
             }
-        } while (opc>11);
+        } while (opc > 11);
         switch (opc) {
             case 1:
                 try {
@@ -35,42 +35,59 @@ public class Server extends Output {
             } catch (Exception e) {
                 throw new Exception("ERROR OPCION 1");
             }
-                break;
+            break;
             case 2:
                 try {
                 servCas.showHousesByAugustMonth();
             } catch (Exception e) {
                 throw new Exception("ERROR OPCION 2");
             }
-                break;
+            break;
             case 3:
-                
-                break;
+                try {
+                servFam.showFamiliesByEmail();
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 3");
+            }
+
+            break;
             case 4:
-                
-                break;
+                try {
+                    scan.nextLine();
+                System.out.println("|-----------------------------------------------------------|");
+                System.out.println("|      AVERIGUEMOS QUE CASAS SE ENCUENTRAN DISPONIBLES      |");
+                System.out.println("|-----------------------------------------------------------|");
+                System.out.print(" - INGRESE UNA FECHA (yyyy-mm-dd): ");
+                String fechaI = scan.nextLine();
+                System.out.print(" - CANTIDAD DE DIAS QUE DESEA ESTAR: ");
+                int cantidad = scan.nextInt();
+                servCas.showHousesByDateUser(fechaI,cantidad);
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 4", e);
+            }
+            break;
             case 5:
-                
+
                 break;
             case 6:
-                
+
                 break;
             case 7:
-                
+
                 break;
             case 8:
-                
+
                 break;
             case 9:
-                
+
                 break;
             case 10:
-                
+
                 break;
             case 11:
-                
+
                 break;
-            
+
         }
         return opc < 11;
     }
