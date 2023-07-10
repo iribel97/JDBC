@@ -15,6 +15,7 @@ public class Server extends Output {
     ServerFamilia servFam = new ServerFamilia();
     ServerCasa servCas = new ServerCasa();
     ServerCliente servCli = new ServerCliente();
+    ServerEstancia servEst = new ServerEstancia();
     Scanner scan = new Scanner(System.in);
 
     public boolean menu() throws Exception {
@@ -29,6 +30,7 @@ public class Server extends Output {
 
             }
         } while (opc > 11);
+
         switch (opc) {
             case 1:
                 try {
@@ -54,7 +56,7 @@ public class Server extends Output {
             break;
             case 4:
                 try {
-                    scan.nextLine();
+                scan.nextLine();
                 System.out.println("|-----------------------------------------------------------|");
                 System.out.println("|      AVERIGUEMOS QUE CASAS SE ENCUENTRAN DISPONIBLES      |");
                 System.out.println("|-----------------------------------------------------------|");
@@ -62,7 +64,7 @@ public class Server extends Output {
                 String fechaI = scan.nextLine();
                 System.out.print(" - CANTIDAD DE DIAS QUE DESEA ESTAR: ");
                 int cantidad = scan.nextInt();
-                servCas.showHousesByDateUser(fechaI,cantidad);
+                servCas.showHousesByDateUser(fechaI, cantidad);
             } catch (Exception e) {
                 throw new Exception("ERROR OPCION 4", e);
             }
@@ -73,10 +75,14 @@ public class Server extends Output {
             } catch (Exception e) {
                 throw new Exception("ERROR OPCION 5: ", e);
             }
-                break;
+            break;
             case 6:
-
-                break;
+                try {
+                servEst.showEstancias();
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 6 SERVER: ", e);
+            }
+            break;
             case 7:
 
                 break;

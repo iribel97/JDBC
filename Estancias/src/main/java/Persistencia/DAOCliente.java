@@ -16,7 +16,7 @@ public class DAOCliente extends DAO{
     //DEVOLVER UN SOLO CLIENTE POR MEDIO DEL ID
     public Cliente selectClientByID(int id) throws Exception{
         try {
-            String sql = "SELECT * FORM clientes WHERE id_cliente = " + id + ";";
+            String sql = "SELECT * FROM clientes WHERE id_cliente = " + id + ";";
             
             consultarBase(sql);
             
@@ -24,15 +24,16 @@ public class DAOCliente extends DAO{
             
             while (resultado.next()) {
                 
-                client.setIdCliente(resultado.getInt(1));
-                client.setNombre(resultado.getString(2));
-                client.setCalle(resultado.getString(3));
-                client.setNumero(resultado.getInt(4));
-                client.setCodigoPostal(resultado.getString(5));
-                client.setCiudad(resultado.getString(6));
-                client.setPais(resultado.getString(7));
-                client.setEmail(resultado.getString(8));
+                client.setIdCliente(resultado.getInt("id_cliente"));
+                client.setNombre(resultado.getString("nombre"));
+                client.setCalle(resultado.getString("calle"));
+                client.setNumero(resultado.getInt("numero"));
+                client.setCodigoPostal(resultado.getString("codigo_postal"));
+                client.setCiudad(resultado.getString("ciudad"));
+                client.setPais(resultado.getString("pais"));
+                client.setEmail(resultado.getString("email"));
             }
+            desconectarBase();
             return client;
         } catch (Exception e) {
             throw new Exception("PROBLEMAS EN EL DAO CLIENTE, METODO 1");

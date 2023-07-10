@@ -61,11 +61,7 @@ public final class DAOCasa extends DAO {
 
         try {
 
-            if (id == 0) {
-                throw new Exception("");
-            }
-
-            String sql = "SELECT * FROM Casas WHERE id_casa = " + id + ";";
+            String sql = "SELECT * FROM casas WHERE id_casa = " + id + ";";
 
             consultarBase(sql);
 
