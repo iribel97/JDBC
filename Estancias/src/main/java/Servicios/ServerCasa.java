@@ -118,4 +118,25 @@ public class ServerCasa extends Output {
             throw new Exception("ERROR EN EL METODO SERVICES");
         }
     }
+    
+    public void showHousesByCountry() throws Exception{
+        try {
+            String vCalle = "__________ PAIS __________", vNum = "__ # __";
+            Collection<Casa> houses = dao.selectNumHouseByCountry();
+            System.out.println("|----------------------------------|");
+            System.out.println("|    CANTIDAD DE CASAS POR PAIS    |");
+            System.out.println("|----------------------------------|");
+            System.out.println("|__________ PAIS __________|__ # __|");
+            for (Casa cas : houses) {
+                imprimirCasilla(cas.getPais(), vCalle);
+                imprimirCasilla(String.valueOf(cas.getNumero()), vNum);
+                
+                System.out.println("|");
+
+            }
+            System.out.println("|----------------------------------|");
+        } catch (Exception e) {
+            throw new Exception("ERROR EN EL METODO SERVICES");
+        }
+    }
 }

@@ -92,8 +92,12 @@ public class Server extends Output {
 
             break;
             case 8:
-
-                break;
+                try {
+                servCas.showHousesByCountry();
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 6 SERVER: ", e);
+            }
+            break;
             case 9:
 
                 break;

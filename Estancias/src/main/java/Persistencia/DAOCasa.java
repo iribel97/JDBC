@@ -251,5 +251,36 @@ public final class DAOCasa extends DAO {
         }
 
     }
+    
+    
+    public Collection<Casa> selectNumHouseByCountry() throws Exception {
 
+        try {
+
+            String sql = "SELECT pais, count(*) 'NumeroPaises' FROM Casas GROUP BY pais;";
+
+            consultarBase(sql);
+
+            Casa house;
+            Collection<Casa> houses = new ArrayList();
+
+            while (resultado.next()) {
+                house = new Casa();
+                
+                house.setPais(resultado.getString("pais"));
+                house.setNumero(resultado.getInt("NumeroPaises"));
+
+                houses.add(house);
+            }
+
+            desconectarBase();
+            return houses;
+
+        } catch (Exception e) {
+
+            throw e;
+
+        }
+
+    }
 }
