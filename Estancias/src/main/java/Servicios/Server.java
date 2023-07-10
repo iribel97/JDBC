@@ -16,6 +16,7 @@ public class Server extends Output {
     ServerCasa servCas = new ServerCasa();
     ServerCliente servCli = new ServerCliente();
     ServerEstancia servEst = new ServerEstancia();
+    ServerComentario servCom = new ServerComentario();
     Scanner scan = new Scanner(System.in);
 
     public boolean menu() throws Exception {
@@ -87,7 +88,7 @@ public class Server extends Output {
                 try {
                 servCas.showHousesPrice();
             } catch (Exception e) {
-                throw new Exception("ERROR OPCION 6 SERVER: ", e);
+                throw new Exception("ERROR OPCION 7 SERVER: ", e);
             }
 
             break;
@@ -95,12 +96,16 @@ public class Server extends Output {
                 try {
                 servCas.showHousesByCountry();
             } catch (Exception e) {
-                throw new Exception("ERROR OPCION 6 SERVER: ", e);
+                throw new Exception("ERROR OPCION 8 SERVER: ", e);
             }
             break;
             case 9:
-
-                break;
+                try {
+                servCom.showComentsWhereClean();
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 9 SERVER: ", e);
+            }
+            break;
             case 10:
 
                 break;
