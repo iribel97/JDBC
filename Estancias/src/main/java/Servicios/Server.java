@@ -84,8 +84,13 @@ public class Server extends Output {
             }
             break;
             case 7:
+                try {
+                servCas.showHousesPrice();
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 6 SERVER: ", e);
+            }
 
-                break;
+            break;
             case 8:
 
                 break;

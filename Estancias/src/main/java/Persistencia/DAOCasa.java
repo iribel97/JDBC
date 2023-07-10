@@ -94,13 +94,9 @@ public final class DAOCasa extends DAO {
     }
 
     /*DEVOLVER TODOS LOS REGISTROS DE LA TABLA CASA*/
-    public Collection<Casa> selectHouse(int id) throws Exception {
+    public Collection<Casa> selectHouse() throws Exception {
 
         try {
-
-            if (id == 0) {
-                throw new Exception("");
-            }
 
             String sql = "SELECT * FROM Casas;";
 
@@ -212,6 +208,46 @@ public final class DAOCasa extends DAO {
 
         } catch (Exception e) {
             throw new Exception("ERROR SELECCIONANDO CASAS DISPONIBLES");
+        }
+
+    }
+    
+    public Collection<Casa> selectHouseByEngland() throws Exception {
+
+        try {
+
+            String sql = "SELECT * FROM Casas WHERE pais = 'Reino Unido';";
+
+            consultarBase(sql);
+
+            Casa house;
+            Collection<Casa> houses = new ArrayList();
+
+            while (resultado.next()) {
+                house = new Casa();
+                house.setIdCasa(resultado.getInt(1));
+                house.setCalle(resultado.getString(2));
+                house.setNumero(resultado.getInt(3));
+                house.setCodigoPostal(resultado.getString("codigo_postal"));
+                house.setCiudad(resultado.getString("ciudad"));
+                house.setPais(resultado.getString("pais"));
+                house.setFechaDesde(resultado.getDate("fecha_desde").toLocalDate());
+                house.setFechaHasta(resultado.getDate("fecha_hasta").toLocalDate());
+                house.setTiempoMin(resultado.getInt("tiempo_minimo"));
+                house.setTiempoMax(resultado.getInt("tiempo_maximo"));
+                house.setPrecioHabitacion(resultado.getDouble("precio_habitacion"));
+                house.setTipoVivienda(resultado.getString("tipo_vivienda"));
+
+                houses.add(house);
+            }
+
+            desconectarBase();
+            return houses;
+
+        } catch (Exception e) {
+
+            throw e;
+
         }
 
     }
