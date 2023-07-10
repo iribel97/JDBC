@@ -4,9 +4,10 @@
  */
 package Servicios;
 
-import Entidades.Estancia;
-import Persistencia.DAOEstancia;
+import Entidades.*;
+import Persistencia.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  *
@@ -14,6 +15,8 @@ import java.util.ArrayList;
  */
 public class ServerEstancia extends Output{
     DAOEstancia dao = new DAOEstancia();
+    DAOCliente daoCli = new DAOCliente();
+    Scanner scaner = new Scanner(System.in);
     
      public void showEstancias() throws Exception {
         try {
@@ -43,5 +46,37 @@ public class ServerEstancia extends Output{
             throw new Exception("ERROR EN SERVERESTANCIA METODO 1");
         }
     }
-
+    
+     
+    public void insertEstancia() throws Exception{
+        try {
+            int idUsu;
+            
+            //PEDIR DATOS PRIMERO DE USUARIO
+            System.out.println("|--------------------------------------------------------|");
+            System.out.print("   INGRESE SU #: ");
+            idUsu = scaner.nextInt();
+            
+            if (!verificUser(idUsu)) {
+                
+            }
+            
+        } catch (Exception e) {
+            
+            throw new Exception("ERROR EN SERVER ESTANCIA METODO 2");
+        }
+    }
+    
+    //VERIFICAR QUE EL USUARIO EXISTA
+    private boolean verificUser(int idUsu) throws Exception{
+        ArrayList<Cliente> client = daoCli.selectClient();
+        
+        for(Cliente cli : client){
+            if (cli.getIdCliente() == idUsu) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
 }
