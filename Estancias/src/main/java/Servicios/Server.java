@@ -14,6 +14,7 @@ public class Server extends Output {
 
     ServerFamilia servFam = new ServerFamilia();
     ServerCasa servCas = new ServerCasa();
+    ServerCliente servCli = new ServerCliente();
     Scanner scan = new Scanner(System.in);
 
     public boolean menu() throws Exception {
@@ -67,7 +68,11 @@ public class Server extends Output {
             }
             break;
             case 5:
-
+                try {
+                servCli.showClients();
+            } catch (Exception e) {
+                throw new Exception("ERROR OPCION 5: ", e);
+            }
                 break;
             case 6:
 
